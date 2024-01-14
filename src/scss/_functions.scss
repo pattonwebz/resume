@@ -1,0 +1,25 @@
+@use 'variables';
+@use 'sass:math';
+
+@function strip-units($value) {
+
+  @if unitless($value) {
+
+    @return $value;
+  }
+
+  @return math.div($value, $value * 0 + 1)
+}
+
+@function rems($pixels, $base: variables.$base-font-size) {
+
+  @if not unitless($pixels) {
+    $pixels: strip-units($pixels);
+  }
+
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+
+  @return #{math.div($pixels, $base)}rem;
+}

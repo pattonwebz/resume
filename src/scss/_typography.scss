@@ -1,0 +1,64 @@
+@use 'sass:map';
+@use 'sass:math';
+
+$font-sizes--large: (
+        'small': rems(12px),
+        'normal': rems(16px),
+        'large': rems(20px),
+        'x-large': rems(24px),
+        'xx-large': rems(32px),
+        'xxx-large': rems(48px),
+        'huge': rems(64px),
+);
+
+$font-sizes--normal: (
+        'small': rems(12px),
+        'normal': rems(16px),
+        'large': rems(18px),
+        'x-large': rems(20px),
+        'xx-large': rems(24px),
+        'xxx-large': rems(32px),
+        'huge': rems(48px),
+);
+
+
+$headers: (
+        'h6': 'small',
+        'h5': 'normal',
+        'h4': 'large',
+        'h3': 'x-large',
+        'h2': 'xx-large',
+        'h1': 'xxx-large',
+);
+
+@each $header, $size in $headers {
+  // You can use the $header and $size variables here.
+  // For example, to generate styles for each header:
+  #{$header},
+  .#{$header} {
+    font-size: map.get($font-sizes--normal, $size);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $secondary-color;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: rems(20px);
+}
+
+strong {
+    font-weight: 500;
+}
+
+a {
+  color: $primary-color;
+
+  &:hover {
+    color: lighten($primary-color, 30%);
+    text-decoration: none;
+  }
+}
